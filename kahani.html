@@ -14,7 +14,7 @@
         .brand-logo { font-family: 'Rozha One', serif; font-size: 3rem; color: #fff; text-decoration: none; }
         
         nav { background-color: #1a1a1a; text-align: center; padding: 15px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        nav a { color: #e0dcd3; text-decoration: none; margin: 0 8px; padding: 8px 16px; font-size: 1rem; font-weight: 600; border-radius: 20px; }
+        nav a { color: #e0dcd3; text-decoration: none; margin: 0 8px; padding: 8px 16px; font-size: 1rem; font-weight: 600; border-radius: 20px; transition: 0.3s; }
         nav a:hover, nav a.active { background-color: #d4af37; color: #121212; }
         
         .container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
@@ -27,15 +27,14 @@
         .chap-btn { padding: 8px 18px; background: #1a1a1a; color: #d4af37; text-decoration: none; border-radius: 20px; font-size: 0.95rem; font-weight: bold; transition: 0.3s; }
         .chap-btn:hover { background: #d4af37; color: #111; }
         
-        /* पुस्तक जैसा कलात्मक इलस्ट्रेशन कंटेनर */
-        .illustration-box {
-            width: 100%;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 20px 0 25px 0;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        .chapter-img { 
+            width: 100%; 
+            max-height: 480px; 
+            object-fit: cover; 
+            border-radius: 10px; 
+            margin: 20px 0 25px 0; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25); 
             border: 2px solid #d4af37;
-            background: #111;
         }
 
         .story-body h3 { font-family: 'Rozha One', serif; font-size: 1.8rem; color: #2a1b16; margin-bottom: 15px; border-bottom: 2px solid #d4af37; padding-bottom: 8px; }
@@ -82,33 +81,8 @@
             <div id="ch1" class="story-body">
                 <h3>अध्याय 1: तूफ़ान में जलता हुआ दीप</h3>
                 
-                <!-- 100% लोड होने वाला कलात्मक SVG इलस्ट्रेशन -->
-                <div class="illustration-box">
-                    <svg viewBox="0 0 800 350" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                        <!-- रात का बैकग्राउंड -->
-                        <rect width="800" height="350" fill="#0f141d"/>
-                        <!-- बारिश और तूफ़ान के संकेत -->
-                        <path d="M50,20 L30,100 M200,10 L180,90 M400,30 L380,110 M650,15 L630,95 M750,40 L730,120" stroke="#334155" stroke-width="2" stroke-dasharray="5,10"/>
-                        <!-- पुराना स्कूल सिलुएट -->
-                        <polygon points="100,320 100,160 400,80 700,160 700,320" fill="#1e293b"/>
-                        <rect x="250" y="200" width="80" height="120" fill="#0f172a" stroke="#334155" stroke-width="2"/>
-                        <rect x="470" y="200" width="80" height="120" fill="#0f172a" stroke="#334155" stroke-width="2"/>
-                        <!-- खिड़की से जलते दीये का प्रकाश -->
-                        <circle cx="400" cy="220" r="100" fill="url(#lampGlow)" opacity="0.6"/>
-                        <path d="M380,240 Q400,210 400,190 Q400,210 420,240 Z" fill="#fbbf24"/>
-                        <circle cx="400" cy="215" r="12" fill="#fffbebe"/>
-                        <!-- ग्रेडिएंट प्रकाश -->
-                        <defs>
-                            <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
-                                <stop offset="0%" stop-color="#f59e0b" stop-opacity="1"/>
-                                <stop offset="50%" stop-color="#d97706" stop-opacity="0.5"/>
-                                <stop offset="100%" stop-color="#0f141d" stop-opacity="0"/>
-                            </radialGradient>
-                        </defs>
-                        <!-- टेक्स्ट -->
-                        <text x="400" y="310" font-family="'Rozha One', serif" font-size="22" fill="#fef3c7" text-anchor="middle">तूफ़ान में जलता हुआ दीप</text>
-                    </svg>
-                </div>
+                <!-- आपकी ही बनाई हुई खूबसूरत इमेज डायरेक्ट लिंक के साथ -->
+                <img src="https://i.postimg.cc/mD83zR0p/masterji-storm.jpg" alt="तूफ़ान में जलता हुआ दीप - मास्टरजी और छात्र" class="chapter-img">
                 
                 <p>आकाश में काले बादलों की घनी परत बिछी हुई थी, और दूर क्षितिज पर बिजली कौंध रही थी। शहर के उस आख़िरी कोने में बने जर्जर स्कूल के बनामदे में 'मास्टरजी' चुपचाप खड़े थे। उधड़े हुए प्लास्टर वाली दीवारें और टूटी हुई बेंचें इस बात की गवाही दे रही थीं कि इस जगह को समाज ने बहुत पहले 'नाक़ाबिल' मानकर छोड़ दिया था।</p>
                 <p>यह शहर का वही 'ई-क्लास' था, जहाँ उन बच्चों को फेंक दिया जाता था, जिन्हें हर किसी ने 'ज़ीरो' घोषित कर दिया था। कोई ग़रीबी के दलदल से उठकर आया था, तो कोई पारिवारिक परिस्थितियों का मारा हुआ। दुनिया कहती थी—<em>“ये बच्चे कभी कुछ नहीं बन सकते।”</em></p>
