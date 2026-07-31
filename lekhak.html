@@ -3,49 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>लेखक परिचय | मार्ग</title>
+    <title>लेखक परिचय: अटैक मास्टर | मार्ग</title>
     <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Yatra+One&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: #f8f6f0; color: #2c2c2c; font-family: 'Noto Serif Devanagari', serif; line-height: 2; }
+        body { background-color: #f8f6f0; color: #2c2c2c; font-family: 'Noto Serif Devanagari', serif; line-height: 1.9; }
+        
         header { background: #121212; color: #f4f1ea; text-align: center; padding: 40px 20px; border-bottom: 3px solid #d4af37; }
-        .brand-logo { font-family: 'Rozha One', serif; font-size: 3rem; color: #fff; }
-        nav { background-color: #1a1a1a; text-align: center; padding: 15px 0; }
-        nav a { color: #e0dcd3; text-decoration: none; margin: 0 10px; padding: 8px 16px; font-size: 1rem; font-weight: 600; border-radius: 20px; }
+        .brand-logo { font-family: 'Rozha One', serif; font-size: 3rem; color: #fff; text-decoration: none; }
+        
+        nav { background-color: #1a1a1a; text-align: center; padding: 15px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        nav a { color: #e0dcd3; text-decoration: none; margin: 0 8px; padding: 8px 16px; font-size: 1rem; font-weight: 600; border-radius: 20px; transition: 0.3s; }
         nav a:hover, nav a.active { background-color: #d4af37; color: #121212; }
-        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        .post-card { background: #ffffff; border-radius: 12px; padding: 40px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #e2dacd; }
-        .post-title { font-family: 'Yatra One', cursive; font-size: 2.2rem; color: #2a1b16; text-align: center; margin-bottom: 10px; }
-        .bio-meta { text-align: center; font-size: 0.95rem; color: #666; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .bio-body p { margin-bottom: 20px; font-size: 1.15rem; color: #333; text-align: justify; }
+        
+        .container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
+        
+        /* प्रोफाइल कार्ड लेआउट */
+        .profile-card { background: #ffffff; border-radius: 12px; padding: 45px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #e2dacd; }
+        
+        .profile-header { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; margin-bottom: 35px; border-bottom: 2px solid #f0ebe1; padding-bottom: 30px; }
+        
+        .author-img-box { flex-shrink: 0; text-align: center; }
+        .author-img { 
+            width: 170px; 
+            height: 170px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 4px solid #d4af37; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15); 
+        }
+        
+        .author-titles h1 { font-family: 'Yatra One', cursive; font-size: 2.3rem; color: #2a1b16; margin-bottom: 5px; }
+        .author-titles h4 { font-size: 1.1rem; color: #8c2a1c; font-weight: 600; font-style: italic; }
+        
+        .bio-section h3 { font-family: 'Rozha One', serif; font-size: 1.5rem; color: #8c2a1c; margin: 25px 0 10px 0; border-left: 4px solid #d4af37; padding-left: 10px; }
+        .bio-section p { margin-bottom: 20px; font-size: 1.12rem; color: #333; text-align: justify; }
+        
+        .quote-box { background: #faf8f5; border-left: 4px solid #d4af37; padding: 18px; font-style: italic; margin: 25px 0; font-size: 1.15rem; color: #2a1b16; }
+
         footer { text-align: center; padding: 30px; background-color: #121212; color: #888; margin-top: 60px; }
+
+        /* मोबाइल रेस्पॉन्सिव */
+        @media (max-width: 600px) {
+            .profile-header { flex-direction: column; text-align: center; }
+            .author-titles h1 { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
-    <header><div class="brand-logo">मार्ग</div></header>
+
+    <header>
+        <a href="index.html" class="brand-logo">मार्ग</a>
+    </header>
+
     <nav>
         <a href="index.html">गृह (Home)</a>
         <a href="kavita.html">कविताएँ</a>
         <a href="kahani.html">कहानी / उपन्यास</a>
+        <a href="nibandh.html">निबंध</a>
         <a href="lekhak.html" class="active">लेखक</a>
     </nav>
     
     <div class="container">
-        <article class="post-card">
-            <h2 class="post-title">लेखक परिचय</h2>
-            <div class="bio-meta">
-                <strong>नाम:</strong> अटैक मास्टर | <strong>शिक्षा:</strong> बी.ए. इन मास कम्युनिकेशन | <strong>स्थान:</strong> बिहार, भारत
-            </div>
+        <article class="profile-card">
             
-            <div class="bio-body">
-                <p>1 जनवरी 2000 को भारत के ऐतिहासिक राज्य बिहार में जन्मे <strong>'अटैक मास्टर'</strong> एक संवेदनशील लेखक और विचारशील चिंतनकर्ता हैं। मास कम्युनिकेशन (जनसंचार) की अपनी औपचारिक शिक्षा के माध्यम से उन्होंने समाज, मानव-मन और वैचारिक संप्रेषण की गहराइयों को सूक्ष्मता से समझा है।</p>
-                
-                <p>उनका अटूट विश्वास है कि आज की इस भौतिकतावादी और व्यावसायिक दौड़ में समाज अपने मूल ज्ञान, नैतिक साहस और गुरु-शिष्य के पवित्र रिश्तों के मर्म को भूलता जा रहा है। <strong>'मार्ग'</strong> नामक इस साहित्यिक मंच के माध्यम से वे अपनी कविताओं, कहानियों और दार्शनिक विचारों के ज़रिए पाठकों को एक परिपक्व, सकारात्मक और वैचारिक दिशा देने का निरंतर प्रयास कर रहे हैं।</p>
-                
-                <p>उनका लेखन केवल शब्दों का ताना-बाना नहीं है, बल्कि यह आने वाली पीढ़ी और समाज के भविष्य को संवारने का एक गंभीर वैचारिक संकल्प है।</p>
+            <!-- लेखक हेडर और फोटो -->
+            <div class="profile-header">
+                <div class="author-img-box">
+                    <!-- यहाँ master.png आपकी अपलोड की गई फोटो का नाम है -->
+                    <img src="master.png" alt="अटैक मास्टर - लेखक परिचय" class="author-img">
+                </div>
+                <div class="author-titles">
+                    <h1>अटैक मास्टर</h1>
+                    <h4>शब्दों के माध्यम से वैचारिक क्रांति के प्रणेता</h4>
+                </div>
             </div>
+
+            <!-- बायोडाटा और विवरण -->
+            <div class="bio-section">
+                <p><strong>1 जनवरी 2000</strong> को भारत के ऐतिहासिक और सांस्कृतिक केंद्र <strong>बिहार</strong> की पावन भूमि पर जन्मे <strong>'अटैक मास्टर'</strong> एक संवेदनशील लेखक, प्रखर विचारक और आधुनिक कहानीकार हैं। मास कम्युनिकेशन (जनसंचार) में स्नातक (BA) की औपचारिक शिक्षा प्राप्त होने के कारण उन्हें समाज की नब्ज़, मानवीय संवेदनाओं और जन-संवाद की गहरी और सूक्ष्म समझ है। उनका लेखन केवल कोरे शब्दों का ताना-बाना नहीं, बल्कि आने वाली पीढ़ी और समाज के वैचारिक भविष्य को संवारने का एक गंभीर संकल्प है।</p>
+
+                <h3>साहित्यिक विधाएँ और आधुनिक दृष्टिकोण</h3>
+                <p>'अटैक मास्टर' की लेखनी बहुमुखी है; वे कविताएँ, कहानियाँ, उपन्यास, ब्लॉग और गंभीर निबंध जैसी विविध साहित्यिक विधाओं में समान अधिकार और गहराई के साथ लिखते हैं। उनकी एक और अनूठी विशेषता उनका समकालीन सिनेमा, वेब सीरीज़ और एनिमे (Anime) के प्रति गहरा लगाव है। वे आधुनिक विज़ुअल स्टोरीटेलिंग की तकनीक और पारंपरिक साहित्य के दर्शन का अनूठा संगम कर अपनी रचनाओं को एक जीवंत रूप प्रदान करते हैं।</p>
+
+                <div class="quote-box">
+                    "आज की इस भौतिकतावादी दौड़ में, जहाँ समाज अपने मूल ज्ञान, नैतिक साहस और गुरु-शिष्य के पवित्र रिश्तों के मर्म को भूलता जा रहा है, वहाँ शब्दों के ज़रिए एक नया वैचारिक मार्ग तैयार करना ही मेरा मुख्य ध्येय है।"
+                </div>
+
+                <h3>'मार्ग' मंच का उद्देश्य</h3>
+                <p>इस साहित्यिक मंच के माध्यम से उनका निरंतर प्रयास है कि वे पाठकों को केवल मनोरंजन न दें, बल्कि उनके भीतर एक परिपक्व, सकारात्मक और सुदृढ़ वैचारिक दिशा विकसित करें। हर कविता, हर कहानी और हर निबंध के पीछे एक ही उद्देश्य है—<strong>अंधेरे से प्रकाश की ओर, और शून्य से शिखर तक की एक सार्थक यात्रा।</strong></p>
+            </div>
+
         </article>
     </div>
-    <footer><p>© 2026 मार्ग (Marg)</p></footer>
+
+    <footer>
+        <p>© 2026 मार्ग (Marg). सर्वाधिकार सुरक्षित।</p>
+    </footer>
 </body>
 </html>
