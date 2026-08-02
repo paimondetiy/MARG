@@ -3,187 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>मार्ग: ज्ञान और प्रकाश | उपन्यास</title>
+    <title>कहानी | मार्ग: ज्ञान और प्रकाश</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Yatra+One&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { background-color: #f8f6f0; color: #2c2c2c; font-family: 'Noto Serif Devanagari', serif; line-height: 2; }
-        
-        header { background: #121212; color: #f4f1ea; text-align: center; padding: 40px 20px; border-bottom: 3px solid #d4af37; }
-        .brand-logo { font-family: 'Rozha One', serif; font-size: 3rem; color: #fff; text-decoration: none; }
-        
-        nav { background-color: #1a1a1a; text-align: center; padding: 15px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        nav a { color: #e0dcd3; text-decoration: none; margin: 0 8px; padding: 8px 16px; font-size: 1rem; font-weight: 600; border-radius: 20px; transition: 0.3s; }
-        nav a:hover, nav a.active { background-color: #d4af37; color: #121212; }
-        
-        .container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
-        .post-card { background: #ffffff; border-radius: 12px; padding: 40px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #e2dacd; margin-bottom: 30px; }
-        
-        .book-title { font-family: 'Yatra One', cursive; font-size: 2.5rem; color: #8c2a1c; text-align: center; margin-bottom: 5px; }
-        .book-subtitle { text-align: center; font-size: 1.1rem; color: #d4af37; font-weight: 600; margin-bottom: 25px; }
-        
-        .chapter-list { display: flex; gap: 10px; margin-bottom: 35px; flex-wrap: wrap; justify-content: center; background: #faf8f5; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
-        .chap-btn { padding: 8px 18px; background: #1a1a1a; color: #d4af37; text-decoration: none; border-radius: 20px; font-size: 0.95rem; font-weight: bold; transition: 0.3s; }
-        .chap-btn:hover { background: #d4af37; color: #111; }
-        
-        .chapter-img { 
-            width: 100%; 
-            max-height: 480px; 
-            object-fit: cover; 
-            border-radius: 10px; 
-            margin: 20px 0 25px 0; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25); 
-            border: 2px solid #d4af37;
+        body { 
+            background: radial-gradient(circle, #2a2421 0%, #000000 100%); 
+            color: #2c2c2c; 
+            font-family: 'Noto Serif Devanagari', serif; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; 
         }
 
-        .story-body h3 { font-family: 'Rozha One', serif; font-size: 1.8rem; color: #2a1b16; margin-bottom: 15px; border-bottom: 2px solid #d4af37; padding-bottom: 8px; }
-        .story-body p { margin-bottom: 20px; font-size: 1.15rem; color: #333; text-align: justify; }
-        .blockquote { background: #faf8f5; border-left: 4px solid #d4af37; padding: 18px; font-style: italic; margin: 25px 0; font-size: 1.15rem; color: #2a1b16; }
-        
-        .chapter-nav-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-top: 15px; border-top: 1px solid #eee; flex-wrap: wrap; gap: 10px; }
-        .nav-link-btn { color: #8c2a1c; text-decoration: none; font-weight: bold; font-size: 0.95rem; }
-        .nav-link-btn:hover { text-decoration: underline; }
-        .top-btn { background: #f0ebe1; padding: 5px 12px; border-radius: 15px; color: #1a1a1a; text-decoration: none; font-size: 0.85rem; font-weight: 600; }
-        
-        .chapter-divider { border-top: 2px dashed #d4af37; margin: 50px 0; }
-        
-        footer { text-align: center; padding: 30px; background-color: #121212; color: #888; margin-top: 60px; }
+        .book-scene {
+            perspective: 1500px;
+            width: 90vw;
+            max-width: 450px; 
+            height: 80vh;
+            max-height: 650px; 
+            position: relative;
+        }
+
+        .book {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s ease;
+        }
+
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform-origin: left center;
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1), 5px 5px 15px rgba(0,0,0,0.5);
+            border-radius: 5px 15px 15px 5px;
+            background-color: #f4ecd8; 
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cover {
+            background-image: url('book-cover.png'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        .cover-text {
+            position: absolute;
+            top: 15%;
+            width: 100%;
+            text-align: center;
+            color: #d4af37; 
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+        .cover-text h1 { font-family: 'Yatra One', cursive; font-size: 3.5rem; margin-bottom: 5px; }
+        .cover-text h2 { font-size: 1.5rem; font-style: italic; }
+
+        .page.flipped {
+            transform: rotateY(-180deg);
+            z-index: 1 !important;
+        }
+
+        .page-content {
+            padding: 25px;
+            height: 100%;
+            overflow-y: auto; 
+            backface-visibility: hidden; 
+        }
+
+        .chapter-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #8c2a1c;
+            margin-bottom: 15px;
+        }
+
+        .chapter-title {
+            font-family: 'Yatra One', cursive;
+            color: #8c2a1c;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed #c4b59d;
+            padding-bottom: 10px;
+        }
+
+        .story-text { font-size: 0.95rem; line-height: 1.7; text-align: justify; padding-bottom: 30px; }
+
+        .nav-hint {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #888;
+            font-style: italic;
+            background: rgba(244, 236, 216, 0.9);
+            padding: 5px 0;
+        }
+        .cover .nav-hint { color: #f4f1ea; background: transparent; text-shadow: 1px 1px 5px black; }
+
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #d4af37;
+            color: #121212;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: 0.3s;
+        }
+        .home-btn:hover { background: #f1c40f; transform: scale(1.05); }
+
+        .page-content::-webkit-scrollbar { width: 6px; }
+        .page-content::-webkit-scrollbar-thumb { background: #c4b59d; border-radius: 10px; }
+
     </style>
 </head>
-<body id="top">
+<body>
 
-    <header>
-        <a href="index.html" class="brand-logo">मार्ग</a>
-    </header>
+    <a href="index.html" class="home-btn">← मुख्य पृष्ठ</a>
 
-    <nav>
-        <a href="index.html">गृह (Home)</a>
-        <a href="kavita.html">कविताएँ</a>
-        <a href="kahani.html" class="active">कहानी / उपन्यास</a>
-        <a href="nibandh.html">निबंध</a>
-        <a href="lekhak.html">लेखक</a>
-    </nav>
-    
-    <div class="container">
-        <article class="post-card">
-            <h1 class="book-title">मार्ग: ज्ञान और प्रकाश</h1>
-            <div class="book-subtitle">भाग 1: संकल्प और निर्माण</div>
+    <div class="book-scene">
+        <div class="book" id="book">
             
-            <div class="chapter-list">
-                <a href="#ch1" class="chap-btn">अध्याय 1</a>
-                <a href="#ch2" class="chap-btn">अध्याय 2</a>
-                <a href="#ch3" class="chap-btn">अध्याय 3</a>
-                <a href="#ch4" class="chap-btn">अध्याय 4</a>
+            <!-- Cover Page (Page 1) -->
+            <div class="page cover" id="page-1" onclick="flipPage(1)" style="z-index: 11;">
+                <div class="cover-text">
+                    <h1>मार्ग</h1>
+                    <h2>ज्ञान और प्रकाश</h2>
+                </div>
+                <div class="nav-hint">किताब खोलने के लिए क्लिक करें ➔</div>
             </div>
 
-            <!-- अध्याय 1 -->
-            <div id="ch1" class="story-body">
-                <h3>अध्याय 1: तूफ़ान में जलता हुआ दीप</h3>
-                
-                <img src="chapter1.jpg.png" alt="तूफ़ान में जलता हुआ दीप - मास्टरजी और छात्र" class="chapter-img">
-                
-                <p>आकाश में काले बादलों की घनी परत बिछी हुई थी, और दूर क्षितिज पर बिजली कौंध रही थी। शहर के उस आख़िरी कोने में बने जर्जर स्कूल के बनामदे में 'मास्टरजी' चुपचाप खड़े थे। उधड़े हुए प्लास्टर वाली दीवारें और टूटी हुई बेंचें इस बात की गवाही दे रही थीं कि इस जगह को समाज ने बहुत पहले 'नाक़ाबिल' मानकर छोड़ दिया था।</p>
-                <p>यह शहर का वही 'ई-क्लास' था, जहाँ उन बच्चों को फेंक दिया जाता था, जिन्हें हर किसी ने 'ज़ीरो' घोषित कर दिया था। कोई ग़रीबी के दलदल से उठकर आया था, तो कोई पारिवारिक परिस्थितियों का मारा हुआ। दुनिया कहती थी—<em>“ये बच्चे कभी कुछ नहीं बन सकते।”</em></p>
-                <p>लेकिन मास्टरजी की आँखों में हताशा नहीं, एक गहरा संकल्प था। उनके लिए ज्ञान केवल किताबी अक्षरों का जाल नहीं था; वह तो आत्मा को गढ़ने का एक पवित्र माध्यम था।</p>
-                <p>“गुरुजी,” पीछे से एक छोटे लड़के की धीमी आवाज़ आई। “सब कहते हैं कि हम कभी पास नहीं होंगे। क्या हम सच में इतने बुरे हैं?”</p>
-                <p>मास्टरजी मुड़े। उन्होंने उसके छोटे, कांपते हाथों को अपने हाथों में लिया और कहा—“जब कोई मूर्तिकार किसी खुरदरे पत्थर को देखता है, तो दुनिया को उसमें सिर्फ़ एक फालतू पत्थर दिखता है। लेकिन मूर्तिकार जानता है कि उसके अंदर एक सुंदर मूर्ति छिपी है। तुम बुरे नहीं हो, तुम बस अभी तराशे नहीं गए हो।”</p>
-                <div class="blockquote">
-                    "यदि तुम केवल मेरे बनाए रास्ते पर चलोगे, तो केवल मुझ तक पहुँच पाओगे। लेकिन यदि तुम अपना रास्ता खुद बनाओगे, तो तुम मुझसे भी आगे निकल जाओगे।"
+            <!-- Chapter 1 (Page 2) -->
+            <div class="page" id="page-2" onclick="flipPage(2)" style="z-index: 10;">
+                <div class="page-content">
+                    <img src="https://images.unsplash.com/photo-1510531704581-5b2870972060?auto=format&fit=crop&w=600&q=80" alt="Chapter 1" class="chapter-img">
+                    <h2 class="chapter-title">अध्याय 1 से 4: शुरुआत</h2>
+                    <div class="story-text">
+                        <p>शहर के उस शोर-शराबे से दूर, एक पुरानी और जर्जर इमारत थी जिसे लोग स्कूल कहते थे। रमेश अपनी टूटी हुई चप्पलों को घसीटते हुए उस गेट के अंदर दाखिल हुआ। यह कोई आम दिन नहीं था, क्योंकि आज मास्टरजी आने वाले थे...</p>
+                        <br>
+                        <p>मास्टरजी ने उन 12 उपेक्षित बच्चों को चुना। उन्होंने बोर्ड पर एक बिंदु बनाया और कहा, "यह बिंदु तुम हो, और यह पूरा बोर्ड तुम्हारा अज्ञान है। हम यहाँ इस बिंदु को बड़ा करने नहीं, बल्कि इस बोर्ड को मिटाने आए हैं।"</p>
+                        <br>
+                        <p>इन शुरुआती चार अध्यायों में मास्टरजी ने विक्रान्त, रमेश और अन्य बच्चों को वैचारिक रूप से मज़बूत किया। उन्होंने भ्रष्ट ट्रस्टी को हराया और बच्चों को एक नई दुनिया की ओर कदम बढ़ाने के लिए तैयार किया।</p>
+                    </div>
                 </div>
-                <p>तूफ़ान अब और तेज़ हो चुका था, लेकिन मास्टरजी के कमरे में जलता हुआ दीया बिना डिगे लौ दे रहा था...</p>
-
-                <div class="chapter-nav-bottom">
-                    <span></span>
-                    <a href="#top" class="top-btn">⬆️ वापस ऊपर जाएँ</a>
-                    <a href="#ch2" class="nav-link-btn">अध्याय 2 पढ़ें →</a>
-                </div>
+                <div class="nav-hint">अगले पन्ने के लिए क्लिक करें ➔</div>
             </div>
 
-            <div class="chapter-divider"></div>
-
-            <!-- अध्याय 2 -->
-            <div id="ch2" class="story-body">
-                <h3>अध्याय 2: सोए हुए ज़मीर की दस्तक</h3>
-                
-                <img src="chapter2.jpg.png" alt="सोए हुए ज़मीर की दस्तक - मास्टरजी और बोर्ड पर 10" class="chapter-img">
-
-                <p>सुबह की पहली किरण जब जर्जर स्कूल की खिड़कियों से छनकर अंदर आई, तो धूल के कण हवा में तैरते हुए दिखाई दे रहे थे। कल रात का तूफ़ान तो थम चुका था, लेकिन शहर के लोगों के दिलों में जमा हुआ उपेक्षा का तूफ़ान अब भी जारी था।</p>
-                <p>कक्षा में कुल जमा बारह बच्चे बैठे थे। उनके चेहरों पर मुफ़लिसी की परत चढ़ी थी और आँखों में एक ही सवाल था—<em>"क्या सच में हमारा कोई भविष्य है?"</em></p>
-                <p>मास्टरजी ने कोई किताब नहीं खोली। उन्होंने ब्लैकबोर्ड पर चौक से एक बड़ा सा '0' (शून्य) बनाया।</p>
-                <p>"यह क्या है?" मास्टरजी ने शांत आवाज़ में पूछा।</p>
-                <p>"ज़ीरो, गुरुजी..." पीछे की बेंच से रमेश नाम का एक लड़का दबी आवाज़ में बोला। "दुनिया हमें यही तो कहती है। हम सब ज़ीरो हैं।"</p>
-                <p>मास्टरजी मुस्कुराए। उन्होंने चौक उठाया और उस '0' के ठीक आगे '1' लिख दिया। अब वह शून्य अचानक '10' बन चुका था।</p>
-                <p>"देखा तुमने? जब तक यह शून्य अकेला था, इसकी कोई कीमत नहीं थी। लेकिन जैसे ही इसके आगे '1' आकर खड़ा हुआ, इसका मूल्य दस गुना बढ़ गया। यह '1' कोई और नहीं, बल्कि वह ज्ञान और नैतिक साहस है जो मैं तुम्हें देना चाहता हूँ। तुम में से कोई भी बेकार नहीं है, बस तुम्हें अपनी कीमत पहचाननी है।"</p>
-                <p>तभी दरवाज़े पर एक भारी आवाज़ गूँजी, "मास्टरजी! आप इन बच्चों का समय बर्बाद कर रहे हैं।"</p>
-                <p>दरवाज़े पर शहर के एक नामी प्राइवेट स्कूल का ट्रस्टी खड़ा था। महँगी गाड़ी से उतरा वह व्यक्ति घमण्ड से मुस्कुराया और बोला, "इन ग़रीब और नाक़ाबिल बच्चों को सपने मत दिखाइए। ये बड़े होकर वही काम करेंगे जो इनके माँ-बाप करते आए हैं। शिक्षा सिर्फ़ उनके लिए है जो इसका ख़र्च उठा सकते हैं।"</p>
-                <p>लेकिन मास्टरजी अपनी जगह से डिगे नहीं। वे सीधे उस व्यक्ति के सामने जाकर खड़े हो गए। उनकी आँखों में डर नहीं, बल्कि एक असीम प्रकाश था।</p>
-                <p>"शिक्षा कोई व्यापार नहीं है," मास्टरजी ने बहुत ही गम्भीर और ढाल जैसी दृढ़ता से कहा। "जब प्राचीन काल में तक्षशिला में सुदूर देशों से शिक्षार्थी आते थे, तब वहाँ धन नहीं, ज्ञान की लगन देखी जाती थी। आप जिन बच्चों को 'ज़ीरो' कह रहे हैं, कल यही बच्चे इस देश के भविष्य का निर्माण करेंगे। और जब तक मैं ज़िंदा हूँ, मैं इनके और इनकी ग़रीबी के बीच एक ढाल बनकर खड़ा रहूँगा।"</p>
-                <div class="blockquote">
-                    "दुनिया तुम्हें तौलेगी, तुम्हारे कपड़ों से, तुम्हारी जेब से। लेकिन याद रखना, सच्चा ज्ञान इंसान को किसी के आगे झुकना नहीं, बल्कि सही के लिए खड़े होने का साहस देता है।"
+            <!-- Chapter 5 (Page 3) -->
+            <div class="page" id="page-3" onclick="flipPage(3)" style="z-index: 9;">
+                <div class="page-content">
+                    <img src="https://images.unsplash.com/photo-1555617783-66258682a829?auto=format&fit=crop&w=600&q=80" alt="Chapter 5" class="chapter-img">
+                    <h2 class="chapter-title">अध्याय 5: झागदार तमाशा</h2>
+                    <div class="story-text">
+                        <p>शहर की चकाचौंध और लंबी पक्की सड़कों पर जब रमेश और विक्रान्त ने कदम रखा, तो उन्हें लगा कि वे किसी दूसरी दुनिया में आ गए हैं। सामने था देश का सबसे प्रतिष्ठित 'एपेक्स मेट्रोपॉलिटन यूनिवर्सिटी'...</p>
+                        <p>रात को रमेश ने ऑटोमैटिक वाशिंग मशीन में इतना सर्फ डाल दिया कि पूरे हॉस्टल के गलियारे में झाग ही झाग भर गया। तभी मान्या की एंट्री हुई और उनकी दोस्ती की शुरुआत हुई।</p>
+                        <p>उसी रात, रमेश और विक्रान्त के दिमाग में एक अजीब नीली स्क्रीन चमकी: <strong>[ Ding! Host Connected: Earth Level 0 — Ignorant Zone Detected ]</strong>. सिस्टम जाग उठा था!</p>
+                    </div>
                 </div>
-                <p>ट्रस्टी अपमानित महसूस करते हुए बड़बड़ाता हुआ चला गया। मास्टरजी ने अपनी कक्षा की तरफ़ देखा—अब बच्चों के सिर झुके हुए नहीं थे, उनकी आँखों में एक नई चमक थी।</p>
-
-                <div class="chapter-nav-bottom">
-                    <a href="#ch1" class="nav-link-btn">← अध्याय 1</a>
-                    <a href="#top" class="top-btn">⬆️ वापस ऊपर जाएँ</a>
-                    <a href="#ch3" class="nav-link-btn">अध्याय 3 पढ़ें →</a>
-                </div>
+                <div class="nav-hint">अगले पन्ने के लिए क्लिक करें ➔</div>
             </div>
 
-            <div class="chapter-divider"></div>
-
-            <!-- अध्याय 3 -->
-            <div id="ch3" class="story-body">
-                <h3>अध्याय 3: गुरु-द्रोह और विश्वास की कसौटी</h3>
-                
-                <img src="chapter3.jpg.png" alt="गुरु-द्रोह और विश्वास की कसौटी - बिक्रान्त और अधिकारी" class="chapter-img">
-
-                <p>ट्रस्टी के जाने के बाद स्कूल में दिन बीतने लगे, लेकिन एक अनजाना ख़तरा मंडरा रहा था। मास्टरजी की लगन रंग ला रही थी—जो बच्चे कभी अक्षरों से डरते थे, अब वे देर रात तक दीये की रोशनी में गणित और विज्ञान के सूत्र सुलझाने लगे थे।</p>
-                <p>लेकिन जैसे-जैसे रोशनी बढ़ती है, अंधेरे की साज़िशें भी गहरी होने लगती हैं। ट्रस्टी ने स्कूल बंद करवाने के लिए शिक्षा विभाग में शिकायत दर्ज कराई कि मास्टरजी बच्चों को भटका रहे हैं। जाँच के लिए एक अधिकारी को भेजा जाना तय हुआ।</p>
-                <p>उसी दौरान कक्षा का एक छात्र, विक्रान्त, लालच में आ गया। ट्रस्टी ने उसे पैसों का लालच देकर मास्टरजी के ख़िलाफ़ झूठ बोलने को कहा। जाँच के दिन जब अधिकारी आए, तो विक्रान्त खड़ा हुआ। उसकी जेब में पैसों का लिफ़ाफ़ा था और मन में उलझन।</p>
-                <p>लेकिन जब उसने मास्टरजी की आँखों में देखा, तो उसे मास्टरजी की कही बात याद आ गई:</p>
-                <div class="blockquote">
-                    "ज्ञान देने वाला गुरु केवल किताबी बातें नहीं सिखाता, वह आत्मिक जन्म देता है। जो शिष्य अपने गुरु से ज्ञान पाकर उन्हीं के साथ विश्वासघात करता है, वह 'गुरु-द्रोही' कहलाता है। इस संसार में विश्वासघात से बड़ा कोई अपराध नहीं, क्योंकि यह केवल एक इंसान को नहीं, बल्कि ज्ञान की पूरी परंपरा के विश्वास को मार देता है।"
+            <!-- Chapter 6 (Page 4) -->
+            <div class="page" id="page-4" onclick="flipPage(4)" style="z-index: 8;">
+                <div class="page-content">
+                    <img src="https://images.unsplash.com/photo-1505664177264-a694921473bd?auto=format&fit=crop&w=600&q=80" alt="Chapter 6" class="chapter-img">
+                    <h2 class="chapter-title">अध्याय 6: आधी रात का रहस्य</h2>
+                    <div class="story-text">
+                        <p>रात के सन्नाटे में, सिस्टम के इशारे पर दोनों पुरानी लाइब्रेरी के तहखाने में पहुंचे। वहां मान्या भी थी, जो अजीब सिग्नल्स ट्रैक कर रही थी। तीनों का सिस्टम से परिचय हुआ।</p>
+                        <p>तभी वहां प्रोफेसर वर्मा आ गया, जो डार्क गिल्ड का मोहरा था। उसने अपनी जादुई शक्तियों (Telekinesis) से उन पर हमला किया। विक्रान्त की 'अनब्रेकेबल ऑरा' और रमेश की 'स्पार्क ऑफ कंट्रोल' पहली बार जगी।</p>
+                        <p>मास्टरजी की चेतावनी मिलने पर तीनों ने तहखाने में खुले एक नीले चमकते पोर्टल में छलांग लगा दी।</p>
+                    </div>
                 </div>
-                <p>विक्रान्त का ज़मीर काँप उठा। उसने पैसों का लिफ़ाफ़ा मेज़ पर पटक दिया और सब सच बता दिया। उसने कहा, "मेरे गुरुजी ने मुझे झुकना नहीं, सही के लिए खड़े होना सिखाया है। ये मास्टरजी नहीं, बल्कि हम बच्चों के लिए एक ढाल हैं!"</p>
-                <p>अधिकारी ने जाँच बंद कर दी और मास्टरजी की सराहना की। उस शाम विक्रान्त रोते हुए गुरुजी के चरणों में गिर गया, तो मास्टरजी ने उसे गले लगाकर कहा—<em>"भटक जाना पाप नहीं है विक्रान्त, लेकिन भटककर वापस सही रास्ते पर लौट आना ही सच्चे ज्ञान की जीत है।"</em></p>
-
-                <div class="chapter-nav-bottom">
-                    <a href="#ch2" class="nav-link-btn">← अध्याय 2</a>
-                    <a href="#top" class="top-btn">⬆️ वापस ऊपर जाएँ</a>
-                    <a href="#ch4" class="nav-link-btn">अध्याय 4 पढ़ें →</a>
-                </div>
+                <div class="nav-hint">अगले पन्ने के लिए क्लिक करें ➔</div>
             </div>
 
-            <div class="chapter-divider"></div>
-
-            <!-- अध्याय 4 -->
-            <div id="ch4" class="story-body">
-                <h3>अध्याय 4: नए क्षितिज और निरंतर यात्रा</h3>
-                
-                <img src="chapter4.jpg.png" alt="नए क्षितिज और निरंतर यात्रा - सूर्यास्त और शिष्य" class="chapter-img">
-
-                <p>विक्रान्त के सच स्वीकारने और जाँच अधिकारी के जाने के बाद, उस जर्जर स्कूल की फ़िज़ा पूरी तरह बदल चुकी थी। जो लोग कल तक इस 'ई-क्लास' की तरफ़ देखना भी पसंद नहीं करते थे, अब वे दूर-दूर से अपने बच्चों को मास्टरजी के पास मार्गदर्शन के लिए भेजने लगे।</p>
-                <p>एक शाम रमेश ने पूछा, "गुरुजी, अब तो सब ठीक हो गया है। फिर भी आप हर दिन एक छात्र की तरह किताबें और दुनिया की उलझनें क्यों पढ़ते रहते हैं?"</p>
-                <div class="blockquote">
-                    "रमेश, जिस दिन एक गुरु सीखना बंद कर देता है, उसका ज्ञान ठहरा हुआ पानी बन जाता है। दुनिया में नए सत्य और प्रेरणा की खोज के लिए एक गुरु को खुद आजीवन 'शिक्षार्थी' बने रहना पड़ता है।"
+            <!-- Chapter 7 (Page 5) -->
+            <div class="page" id="page-5" onclick="flipPage(5)" style="z-index: 7;">
+                <div class="page-content">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="Chapter 7" class="chapter-img">
+                    <h2 class="chapter-title">अध्याय 7: दो चाँद वाला आसमान</h2>
+                    <div class="story-text">
+                        <p>पोर्टल से निकलकर वे 'ऐथेलगार्ड' (Aethelgard) नाम की जादुई दुनिया में पहुंचे, जहां दो चाँद चमक रहे थे। वहां उन्हें मास्टरजी का होलोग्राफिक संदेश मिला, जिसमें 'स्क्रॉल ऑफ इग्निस' खोजने को कहा गया।</p>
+                        <p>तभी उन पर लेवल 2 के 'शैडो-वुल्फ' ने हमला किया। रमेश की आग, मान्या के सटीक निशाने और विक्रान्त के मुक्के ने मिलकर उस दानव को हरा दिया। लेकिन दूर पहाड़ी पर तोपों का मुँह उन्हीं की तरफ घूम रहा था!</p>
+                    </div>
                 </div>
-                <p>अंतिम परीक्षा का परिणाम आया, तो पूरा शहर स्तब्ध रह गया। शहर की मेरिट लिस्ट में पहला स्थान रमेश का था, और बाकी सभी बारह बच्चे भी सर्वोच्च अंकों से उत्तीर्ण हुए थे। जिन्हें समाज ने 'ज़ीरो' कहा था, वे मास्टरजी की छत्रछाया में 'हीरो' बन चुके थे।</p>
-                <p>रमेश और विक्रान्त ने गुरुजी से कहा, "हम भी आपकी तरह इसी स्कूल में रहकर पढ़ाएंगे।" लेकिन मास्टरजी ने मुस्कुराते हुए इंकार कर दिया।</p>
-                <p>"नहीं! यदि तुम केवल मेरे बनाए रास्ते पर चलोगे, तो केवल मुझ तक पहुँच पाओगे। जाओ, इस दुनिया के नए क्षितिज खोजो! अपना रास्ता खुद बनाओ और वहाँ पहुँचो जहाँ तुम्हारा यह गुरु भी कभी नहीं पहुँच सका।"</p>
-                <p>मास्टरजी ने देखा कि अब उस एक दीये से बारह नए दीपक प्रज्वलित हो चुके थे, जो पूरे ब्रह्मांड को रोशन करने के लिए अपनी-अपनी यात्रा पर निकलने को तैयार थे।</p>
-
-                <div class="chapter-nav-bottom">
-                    <a href="#ch3" class="nav-link-btn">← अध्याय 3</a>
-                    <a href="#top" class="top-btn">⬆️ वापस ऊपर जाएँ</a>
-                    <span class="nav-link-btn" style="color:#aaa;">भाग 1 समाप्त</span>
-                </div>
+                <div class="nav-hint">अगले पन्ने के लिए क्लिक करें ➔</div>
             </div>
 
-        </article>
+            <!-- Chapter 8 (Page 6) -->
+            <div class="page" id="page-6" onclick="flipPage(6)" style="z-index: 6;">
+                <div class="page-content">
+                    <img src="https://images.unsplash.com/photo-1614729939124-03290b01a21e?auto=format&fit=crop&w=600&q=80" alt="Chapter 8" class="chapter-img">
+                    <h2 class="chapter-title">अध्याय 8: परछाइयों का खिलाड़ी</h2>
+                    <div class="story-text">
+                        <p>तोपों के गोलों से बचने में उनकी मदद कबीर ने की, जो 'शैडो मर्ज' से इल्यूज़न बना सकता था। चारों ज्ञान मंदिर पहुँचे, जहाँ रमेश ने 'स्क्रॉल ऑफ इग्निस' हासिल किया और लेवल 3 का 'स्कॉलर' बन गया।</p>
+                        <p>लेकिन उस ऊर्जा से आसमान रोशन हो गया, और लेवल 10 का 'ऐथेलगार्ड एक्सिक्यूशनर' दरवाज़ा तोड़कर अंदर आ घुसा। मौत उनके सामने खड़ी थी!</p>
+                    </div>
+                </div>
+                <div class="nav-hint">अगले पन्ने के लिए क्लिक करें ➔</div>
+            </div>
+
+            <!-- Chapter 9 (Page 7) -->
+            <div class="page" id="page-7" onclick="flipPage(7)" style="z-index: 5;">
+                <div class="page-content">
+                    <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=600&q=80" alt="Chapter 9" class="chapter-img">
+                    <h2 class="chapter-title">अध्याय 9: मौत से आँख-मिचौली</h2>
+                    <div class="story-text">
+                        <p>राक्षस बहुत ताकतवर था। विक्रान्त का कवच टूट गया। लेकिन मास्टरजी की सीख—"विज्ञान का इस्तेमाल करो"—रमेश को याद आई। उसने आग से फर्श पिघलाकर नीचे का पानी ऊपर बुला लिया।</p>
+                        <p>पानी में भीगे राक्षस ने जैसे ही बिजली की तलवार चलाई, शॉर्ट-सर्किट से वह खुद ही भस्म हो गया। सबको भयंकर EXP मिला और वे लेवल अप हुए। बक्से में से उन्हें एक नई चाबी और 'क्लॉकवर्क सिटी' जाने का संदेश मिला।</p>
+                    </div>
+                </div>
+                <div class="nav-hint">अगले पन्ने के लिए क्लिक करें ➔</div>
+            </div>
+
+            <!-- Chapter 10 (Page 8) -->
+            <div class="page" id="page-8" onclick="flipPage(8)" style="z-index: 4;">
+                <div class="page-content">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80" alt="Chapter 10" class="chapter-img">
+                    <h2 class="chapter-title">अध्याय 10: टिक-टॉक की दुनिया</h2>
+                    <div class="story-text">
+                        <p>सुनहरे पोर्टल से निकलकर वे मशीनों और गियर्स से बने 'द क्लॉकवर्क सिटी' (Level 2 Sci-Fi Zone) में पहुंचे। यहाँ की हवा ज़हरीली थी और भावनाओं को अपराध माना जाता था।</p>
+                        <p>तीन रोबोटिक गार्ड्स ने उन पर हमला किया। कबीर का इल्यूज़न थर्मल स्कैनर के आगे फेल हो गया, लेकिन रमेश ने ज़मीन तेज़ घुमाकर और मान्या ने उनकी चाबियाँ जाम करके उन्हें हरा दिया।</p>
+                        <p>अब उनका लक्ष्य इस मशीनी शहर के मेन 'डेटा सेंटर' को हैक करके मास्टरजी के कैद दोस्त को आज़ाद कराना था। असली जंग तो अब शुरू होने वाली थी।</p>
+                    </div>
+                </div>
+                <div class="nav-hint">➔</div>
+            </div>
+
+        </div>
     </div>
-    
-    <footer><p>© 2026 मार्ग (Marg)</p></footer>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 8; // कुल 8 पेज हैं (कवर + 7 चैप्टर पेज)
+
+        function flipPage(pageNum) {
+            const page = document.getElementById(`page-${pageNum}`);
+            
+            if (!page.classList.contains('flipped')) {
+                page.classList.add('flipped');
+                currentPage++;
+            } 
+            else {
+                page.classList.remove('flipped');
+                currentPage--;
+            }
+        }
+    </script>
+
 </body>
 </html>
