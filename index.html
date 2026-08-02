@@ -1,174 +1,313 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>मार्ग - साहित्य, विचार और चिंतन</title>
-    <style>
-        /* CSS Styling - वेबसाइट का डिज़ाइन */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Georgia', 'serif', 'Noto Serif Devanagari';
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>काव्यधारा — हिंदी साहित्य</title>
+  <meta name="description" content="हिंदी कविताएँ, कहानियाँ और निबंधों का एक सुंदर संग्रह">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            rose: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+              800: '#9f1239',
+              900: '#881337',
+            }
+          },
+          fontFamily: {
+            hindi: ['"Noto Sans Devanagari"', '"Karma"', 'serif'],
+            body: ['"Inter"', 'system-ui', 'sans-serif'],
+          }
         }
-
-        body {
-            background-color: #fcfbf7;
-            color: #2c2c2c;
-            line-height: 1.8;
-        }
-
-        /* Header / हेडर */
-        header {
-            background-color: #1a1a1a;
-            color: #f4f1ea;
-            text-align: center;
-            padding: 50px 20px;
-            border-bottom: 3px solid #c5a059;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: #c5a059;
-            font-style: italic;
-        }
-
-        /* Navigation Menu / नेविगेशन बार */
-        nav {
-            background-color: #2c2c2c;
-            text-align: center;
-            padding: 12px 0;
-        }
-
-        nav a {
-            color: #f4f1ea;
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 1.1rem;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #c5a059;
-        }
-
-        /* Main Container / मुख्य भाग */
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        /* Blog Post Card / ब्लॉग कार्ड */
-        .post-card {
-            background: #ffffff;
-            border: 1px solid #e0dcd3;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        .post-title {
-            font-size: 1.8rem;
-            color: #1a1a1a;
-            margin-bottom: 10px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .post-title:hover {
-            color: #c5a059;
-        }
-
-        .post-meta {
-            font-size: 0.9rem;
-            color: #777;
-            margin-bottom: 15px;
-        }
-
-        .post-excerpt {
-            font-size: 1.1rem;
-            color: #444;
-            margin-bottom: 20px;
-        }
-
-        .read-more {
-            display: inline-block;
-            color: #1a1a1a;
-            font-weight: bold;
-            text-decoration: none;
-            border-bottom: 2px solid #c5a059;
-            padding-bottom: 2px;
-        }
-
-        .read-more:hover {
-            color: #c5a059;
-        }
-
-        /* Footer / फुटर */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background-color: #1a1a1a;
-            color: #888;
-            margin-top: 50px;
-            font-size: 0.9rem;
-        }
-    </style>
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Karma:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', 'Noto Sans Devanagari', 'Karma', system-ui, sans-serif; }
+    .font-hindi { font-family: 'Karma', 'Noto Sans Devanagari', serif; }
+    .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .fade-in { animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .slide-in { animation: slideIn 0.3s ease-out; }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .dark ::-webkit-scrollbar-thumb { background: #475569; }
+    /* Smooth transitions */
+    * { transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease; }
+    /* Reading area */
+    .reading-text { line-height: 2; font-size: 1.125rem; }
+    .reading-text p { margin-bottom: 1.5rem; }
+  </style>
 </head>
-<body>
+<body class="bg-white text-gray-800 antialiased dark:bg-gray-950 dark:text-gray-100">
 
-    <!-- हेडर सेक्शन -->
-    <header>
-        <h1>मार्ग</h1>
-        <p>साहित्य, विचार और जीवन का दृष्टिकोण</p>
-    </header>
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-gray-100 dark:bg-gray-950/80 dark:border-gray-800">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" onclick="navigate('home'); return false;" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-rose-500/20 group-hover:shadow-rose-500/40 transition-shadow">क</div>
+        <span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">काव्यधारा</span>
+      </a>
 
-    <!-- नेविगेशन बार -->
-    <nav>
-        <a href="#">गृह (Home)</a>
-        <a href="#">साहित्य</a>
-        <a href="#">विचार</a>
-        <a href="#">मेरे बारे में</a>
-    </nav>
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-1">
+        <a href="#" onclick="navigate('home'); return false;" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-rose-600 hover:bg-rose-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-rose-400 transition-all" data-page="home">होम</a>
+        <a href="#" onclick="navigate('kahaniyan'); return false;" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-rose-600 hover:bg-rose-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-rose-400 transition-all" data-page="kahaniyan">कहानियाँ</a>
+        <a href="#" onclick="navigate('kavitaen'); return false;" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-rose-600 hover:bg-rose-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-rose-400 transition-all" data-page="kavitaen">कविताएँ</a>
+        <a href="#" onclick="navigate('nibandh'); return false;" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-rose-600 hover:bg-rose-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-rose-400 transition-all" data-page="nibandh">निबंध</a>
+        <a href="#" onclick="navigate('about'); return false;" class="nav-link px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-rose-600 hover:bg-rose-50 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-rose-400 transition-all" data-page="about">मेरे बारे में</a>
+        <button onclick="toggleDarkMode()" id="darkModeBtn" class="ml-2 p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle dark mode">
+          <span id="darkModeIcon">🌙</span>
+        </button>
+      </div>
 
-    <!-- ब्लॉग पोस्ट्स -->
-    <div class="container">
-
-        <!-- पहला ब्लॉग पोस्ट -->
-        <article class="post-card">
-            <a href="#" class="post-title">शब्दों का सफर और विचार की शक्ति</a>
-            <div class="post-meta">प्रकाशित: 31 जुलाई, 2026 | श्रेणी: विचार</div>
-            <p class="post-excerpt">
-                विचार ही मनुष्य के चरित्र और उसके जीवन की दिशा तय करते हैं। जब विचार शब्दों का रूप लेते हैं, तो वे साहित्य बन जाते हैं और समाज को एक नया मार्ग दिखाते हैं...
-            </p>
-            <a href="#" class="read-more">पूरा पढ़ें →</a>
-        </article>
-
-        <!-- दूसरा ब्लॉग पोस्ट -->
-        <article class="post-card">
-            <a href="#" class="post-title">काव्य और आधुनिक जीवन की आपाधापी</a>
-            <div class="post-meta">प्रकाशित: 28 जुलाई, 2026 | श्रेणी: साहित्य</div>
-            <p class="post-excerpt">
-                आज के भागदौड़ भरे जीवन में कविता और साहित्य शांति के उस कोने की तरह हैं जहाँ हम थोड़ी देर ठहरकर खुद से मिल सकते हैं...
-            </p>
-            <a href="#" class="read-more">पूरा पढ़ें →</a>
-        </article>
-
+      <!-- Mobile Menu Button -->
+      <div class="flex md:hidden items-center gap-2">
+        <button onclick="toggleDarkMode()" class="p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Toggle dark mode">
+          <span id="darkModeIconMobile">🌙</span>
+        </button>
+        <button onclick="toggleMobileMenu()" class="p-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
     </div>
 
-    <!-- फुटर -->
-    <footer>
-        <p>© 2026 मार्ग (Marg). सर्वाधिकार सुरक्षित।</p>
-    </footer>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 dark:border-gray-800 bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl">
+      <div class="px-4 py-3 space-y-1">
+        <a href="#" onclick="navigate('home'); toggleMobileMenu(); return false;" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-rose-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-rose-400">🏠 होम</a>
+        <a href="#" onclick="navigate('kahaniyan'); toggleMobileMenu(); return false;" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-rose-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-rose-400">📖 कहानियाँ</a>
+        <a href="#" onclick="navigate('kavitaen'); toggleMobileMenu(); return false;" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-rose-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-rose-400">🌸 कविताएँ</a>
+        <a href="#" onclick="navigate('nibandh'); toggleMobileMenu(); return false;" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-rose-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-rose-400">✍️ निबंध</a>
+        <a href="#" onclick="navigate('about'); toggleMobileMenu(); return false;" class="block px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-rose-50 hover:text-rose-600 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-rose-400">👤 मेरे बारे में</a>
+      </div>
+    </div>
+  </nav>
 
-</body>
-</html>
+  <!-- Main Content Container -->
+  <main id="mainContent">
+    <!-- Pages will be injected here by JavaScript -->
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-20 border-t border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <div class="grid md:grid-cols-3 gap-10">
+        <div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center text-white font-bold text-lg">क</div>
+            <span class="font-bold text-lg text-gray-900 dark:text-white">काव्यधारा</span>
+          </div>
+          <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">शब्दों की धारा में खो जाइए। हिंदी साहित्य का एक सुंदर संग्रह जहाँ कविताएँ, कहानियाँ और निबंध मिलते हैं।</p>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4 text-gray-900 dark:text-white">Quick Links</h4>
+          <div class="space-y-2.5 text-sm">
+            <a href="#" onclick="navigate('home'); return false;" class="block text-gray-500 hover:text-rose-600 dark:text-gray-400 dark:hover:text-rose-400 transition-colors">होम</a>
+            <a href="#" onclick="navigate('kavitaen'); return false;" class="block text-gray-500 hover:text-rose-600 dark:text-gray-400 dark:hover:text-rose-400 transition-colors">कविताएँ</a>
+            <a href="#" onclick="navigate('kahaniyan'); return false;" class="block text-gray-500 hover:text-rose-600 dark:text-gray-400 dark:hover:text-rose-400 transition-colors">कहानियाँ</a>
+            <a href="#" onclick="navigate('nibandh'); return false;" class="block text-gray-500 hover:text-rose-600 dark:text-gray-400 dark:hover:text-rose-400 transition-colors">निबंध</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4 text-gray-900 dark:text-white">Newsletter</h4>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">नई रचनाओं की सूचना सीधे अपने इनबॉक्स में पाएँ</p>
+          <form onsubmit="event.preventDefault(); alert('धन्यवाद! आप सफलतापूर्वक सब्सक्राइब हो गए हैं।');" class="flex gap-2">
+            <input type="email" placeholder="your@email.com" required class="flex-1 px-3 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent bg-white dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500">
+            <button type="submit" class="px-4 py-2.5 bg-rose-600 text-white rounded-lg text-sm font-semibold hover:bg-rose-700 transition-colors shadow-lg shadow-rose-600/20">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="mt-10 pt-8 border-t border-gray-200 dark:border-gray-800 text-center text-sm text-gray-400 dark:text-gray-500">
+        © 2026 काव्यधारा. सभी अधिकार सुरक्षित। ❤️ से बनाया गया
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-rose-600 text-white shadow-xl hover:bg-rose-700 hover:scale-110 transition-all hidden items-center justify-center z-50" aria-label="Scroll to top">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+  </button>
+
+  <script>
+    // ===================== DATA =====================
+    const posts = [
+      {
+        id: 1, title: 'वर्षा की पहली बूँद', category: 'कविताएँ', icon: '🌧️',
+        date: '२ अगस्त २०२६', readTime: '२ मिनट',
+        preview: 'बादलों की गर्जना से पहले, एक बूँद गिरी मेरी खिड़की पर...',
+        likes: 124, liked: false,
+        content: `<p>बादलों की गर्जना से पहले,<br>एक बूँद गिरी मेरी खिड़की पर,<br>जैसे कोई पुराना यादों का पत्र,<br>अचानक मिल गया हो किसी दराज से।</p>
+<p>वो बूँद थी या मेरी आँखों की नमी,<br>समझ न आया मुझे,<br>पर जो भी थी, बहुत याद आई,<br>वो बारिश की वो पहली बूँद,<br>जो बचपन में गिरती थी,<br>मेरी हथेली पर।</p>
+<p>आज फिर वही खुशबू आ रही है,<br>मिट्टी की, पुरानी किताबों की,<br>और उन यादों की जो<br>बरसों से कहीं खो गई थीं।</p>`,
+        comments: [
+          {id: 1, name: 'राहुल', text: 'बहुत सुंदर कविता! मन को छू गई।', time: '२ घंटे पहले'},
+          {id: 2, name: 'प्रिया', text: 'वर्षा की यादें ताजा हो गईं। बहुत खूबसूरत!', time: '५ घंटे पहले'},
+          {id: 3, name: 'अनिल', text: '👏👏 शानदार', time: '१ दिन पहले'}
+        ]
+      },
+      {
+        id: 2, title: 'रेलवे स्टेशन', category: 'कहानियाँ', icon: '🚂',
+        date: '३० जुलाई २०२६', readTime: '५ मिनट',
+        preview: 'वो स्टेशन जहाँ हर रोज़ कहानियाँ बदलती हैं, लोग आते हैं और चले जाते हैं...',
+        likes: 89, liked: false,
+        content: `<p>रेलवे स्टेशन एक अजीब जगह है। यहाँ हर इंसान एक कहानी लेकर आता है और एक कहानी लेकर जाता है।</p>
+<p>मैंने आज एक बूढ़े बाबा को देखा। वो प्लेटफॉर्म पर बैठे थे और अपनी पुरानी घड़ी देख रहे थे। शायद किसी का इंतज़ार कर रहे थे। उनकी आँखों में एक अजीब सी उम्मीद थी। वो उम्मीद जो सालों से कायम है।</p>
+<p>कभी ट्रेन आती है, कभी नहीं। पर वो हर रोज़ आते हैं। शायद उनका कोई अपना कभी इसी स्टेशन से गया था और वो आज भी उसी की राह देख रहे हैं।</p>
+<p>स्टेशन पर एक माँ भी थी। अपने छोटे बच्चे को गोद में लिए हुए। बच्चा सो रहा था और माँ उसे देखकर मुस्कुरा रही थी। शायद वो अपने मायके जा रही थी या शायद वापस अपने ससुराल।</p>
+<p>यही है स्टेशन की खूबसूरती। यहाँ हर रोज़ नई कहानियाँ लिखी जाती हैं। कुछ खुशियों की, कुछ गम की।</p>`,
+        comments: [
+          {id: 1, name: 'अमित', text: 'बहुत भावुक कहानी। स्टेशन की यादें ताजा हो गईं।', time: '१ दिन पहले'},
+          {id: 2, name: 'स्नेहा', text: 'आँखें नम हो गईं पढ़ते-पढ़ते।', time: '२ दिन पहले'}
+        ]
+      },
+      {
+        id: 3, title: 'डिजिटल युग में साहित्य', category: 'निबंध', icon: '💻',
+        date: '२५ जुलाई २०२६', readTime: '४ मिनट',
+        preview: 'क्या डिजिटल युग में साहित्य अपना महत्व खो रहा है? या फिर यह एक नया रूप ले रहा है?',
+        likes: 156, liked: false,
+        content: `<p>आज के डिजिटल युग में जब हर चीज़ स्क्रीन पर है, तो साहित्य का क्या स्थान है? क्या किताबें अब सिर्फ़ शोभा की वस्तु बनकर रह गई हैं? या फिर वो एक नए रूप में हमारे बीच मौजूद हैं?</p>
+<p>मैं मानता हूँ कि साहित्य कभी नहीं मरेगा। बस उसका रूप बदलेगा। कलम से कीबोर्ड तक का सफर एक क्रांति है, एक विकास है।</p>
+<p>आज लोग फोन पर कविताएँ पढ़ते हैं। यह अच्छा है। साहित्य अब और लोगों तक पहुँच रहा है। जो पहले किताबें नहीं खरीद पाते थे, वो आज इंटरनेट पर मुफ्त में अच्छी रचनाएँ पढ़ सकते हैं।</p>
+<p>हाँ, एक चुनौती ज़रूर है। ध्यान भटकाने वाली चीज़ें बहुत हैं। पर जो पाठक सचमुच साहित्य से जुड़ना चाहता है, वो हमेशा जुड़ेगा। माध्यम बदल सकता है, पर भावनाएँ वही रहेंगी।</p>`,
+        comments: [
+          {id: 1, name: 'विकास', text: 'बहुत सटीक विचार।', time: '३ दिन पहले'}
+        ]
+      },
+      {
+        id: 4, title: 'चाँदनी रात', category: 'कविताएँ', icon: '🌙',
+        date: '२० जुलाई २०२६', readTime: '३ मिनट',
+        preview: 'चाँद ने आज फिर अपनी चाँदनी बिखेरी है, और मैं तुम्हें याद कर रहा हूँ...',
+        likes: 203, liked: false,
+        content: `<p>चाँद ने आज फिर अपनी चाँदनी बिखेरी है,<br>और मैं तुम्हें याद कर रहा हूँ।</p>
+<p>तारे टिमटिमा रहे हैं,<br>जैसे तुम्हारी आँखें,<br>जो मुझे देखकर मुस्कुराती थीं।</p>
+<p>रात गहरी हो रही है,<br>पर मेरी यादें और गहरी हैं।<br>तुम्हारी हँसी की आवाज़<br>अब भी कानों में गूँजती है।</p>
+<p>चाँदनी रात में,<br>हर छाया तुम्हारी याद दिलाती है।<br>शायद यही है प्यार,<br>जो दूरी में भी करीब लाता है।</p>`,
+        comments: [
+          {id: 1, name: 'स्नेहा', text: 'बहुत खूबसूरत! ❤️', time: '३ दिन पहले'},
+          {id: 2, name: 'रोहित', text: 'रोमांटिक और भावुक।', time: '४ दिन पहले'}
+        ]
+      },
+      {
+        id: 5, title: 'दादी की कहानी', category: 'कहानियाँ', icon: '👵',
+        date: '१५ जुलाई २०२६', readTime: '६ मिनट',
+        preview: 'दादी की कहानियाँ सुनने का मज़ा कुछ और ही होता था। उनकी आवाज़ में एक जादू था...',
+        likes: 178, liked: false,
+        content: `<p>दादी की कहानियाँ सुनने का मज़ा कुछ और ही होता था। उनकी आवाज़ में एक जादू था जो हमें दूसरी दुनिया में ले जाता था।</p>
+<p>हर रात सोने से पहले, हम दादी के पास इकट्ठा होते थे। वो अपनी पुरानी चादर ओढ़कर बैठतीं और कहानी सुनाना शुरू करतीं।</p>
+<p>कभी राजा-रानी की कहानी, कभी भूतों की, और कभी अपने बचपन की। हर कहानी में एक सीख होती थी।</p>
+<p>आज जब दादी नहीं रहीं, तो वो कहानियाँ यादों में बस गई हैं। शायद इसीलिए कहते हैं कि कहानियाँ कभी मरती नहीं, वो पीढ़ी दर पीढ़ी जीती हैं।</p>`,
+        comments: []
+      },
+      {
+        id: 6, title: 'भारतीय संस्कृति', category: 'निबंध', icon: '🏵️',
+        date: '१० जुलाई २०२६', readTime: '५ मिनट',
+        preview: 'भारतीय संस्कृति विश्व की सबसे प्राचीन और समृद्ध संस्कृतियों में से एक है...',
+        likes: 245, liked: false,
+        content: `<p>भारतीय संस्कृति विश्व की सबसे प्राचीन और समृद्ध संस्कृतियों में से एक है। यह सिर्फ़ रीति-रिवाजों का संग्रह नहीं, बल्कि एक जीवन दर्शन है।</p>
+<p>हमारी संस्कृति में 'अतिथि देवो भवः' की भावना है। यहाँ हर त्योहार एक संदेश देता है। दीवाली रोशनी का, होली रंगों का, और ईद भाईचारे का।</p>
+<p>आज जब पश्चिमी संस्कृति का प्रभाव बढ़ रहा है, तो यह ज़रूरी है कि हम अपनी जड़ों से जुड़े रहें। हमारी भाषा, हमारे संगीत, हमारे साहित्य — यही हमारी पहचान है।</p>
+<p>संस्कृति जीवित रहती है जब उसे नई पीढ़ी अपनाती है। आइए, हम भी अपनी इस धरोहर को संजोए रखें।</p>`,
+        comments: [
+          {id: 1, name: 'नीरज', text: 'गर्व की बात है हमारी संस्कृति पर।', time: '१ सप्ताह पहले'}
+        ]
+      }
+    ];
+
+    const categories = [
+      {id: 'kavitaen', name: 'कविताएँ', desc: 'भावनाओं की अभिव्यक्ति', icon: '🌸', color: 'from-pink-100 to-rose-100 dark:from-pink-900/30 dark:to-rose-900/30'},
+      {id: 'kahaniyan', name: 'कहानियाँ', desc: 'जीवन की कहानियाँ', icon: '📖', color: 'from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30'},
+      {id: 'nibandh', name: 'निबंध', desc: 'विचारों का प्रवाह', icon: '✍️', color: 'from-sky-100 to-blue-100 dark:from-sky-900/30 dark:to-blue-900/30'}
+    ];
+
+    // ===================== STATE =====================
+    let currentPage = 'home';
+    let previousPage = 'home';
+    let currentPostId = null;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    // ===================== DARK MODE =====================
+    function initDarkMode() {
+      if (localStorage.getItem('darkMode') === 'true' || 
+          (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        updateDarkModeIcons(true);
+      }
+    }
+
+    function toggleDarkMode() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('darkMode', isDark);
+      updateDarkModeIcons(isDark);
+    }
+
+    function updateDarkModeIcons(isDark) {
+      const icon = isDark ? '☀️' : '🌙';
+      const el1 = document.getElementById('darkModeIcon');
+      const el2 = document.getElementById('darkModeIconMobile');
+      if (el1) el1.textContent = icon;
+      if (el2) el2.textContent = icon;
+    }
+
+    // ===================== MOBILE MENU =====================
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // ===================== NAVIGATION =====================
+    function navigate(page, postId = null) {
+      previousPage = currentPage;
+      currentPage = page;
+      currentPostId = postId;
+
+      // Update nav active states
+      document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.dataset.page === page) {
+          link.classList.add('text-rose-600', 'bg-rose-50', 'dark:text-rose-400', 'dark:bg-gray-800');
+          link.classList.remove('text-gray-600', 'dark:text-gray-300');
+        } else {
+          link.classList.remove('text-rose-600', 'bg-rose-50', 'dark:text-rose-400', 'dark:bg-gray-800');
+          link.classList.add('text-gray-600', 'dark:text-gray-300');
+        }
+      });
+
+      // Hide mobile menu
+      document.getElementById('mobileMenu').classList.add('hidden');
+
+      // Render page
+      const main = document.getElementById('mainContent');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+
+      if (page === 'home') renderHome(main);
+      else if (page === 'about') renderAbout(main);
+      else if (page === 'post') renderPost(main, postId);
+      else renderCategory(main, page);
+    }
+
+    // ===================== RENDER: HOME =====================
+    function renderHome(container) {
+      const latest = posts.slice(0, 3);
+
+      container.innerHTML = `
+        <div class="fade-in">
+          <!-- Hero Section -->
+          <section class="relative py-20 md:py-28 px-4 text-center overflow-hidden">
+            <div class="absolute inset-0 bg-grad
