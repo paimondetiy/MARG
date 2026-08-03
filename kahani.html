@@ -3,409 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>कहानी | मार्ग: ज्ञान और प्रकाश</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Yatra+One&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
-
+    <title>कहानियाँ | मार्ग</title>
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #fdfbf7; color: #333; font-family: 'Noto Serif Devanagari', serif; }
         
-        body { 
-            background: radial-gradient(circle, #2a2421 0%, #000000 100%); 
-            color: #2c2c2c; 
-            font-family: 'Noto Serif Devanagari', serif; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden; 
-        }
+        /* Simple Header */
+        header { background: #fff; padding: 15px 20px; border-bottom: 1px solid #eaeaea; display: flex; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .back-btn { color: #8c2a1c; font-size: 1.2rem; text-decoration: none; margin-right: 20px; }
+        .site-logo { font-family: 'Yatra One', cursive; font-size: 1.8rem; color: #4a1210; flex-grow: 1; text-align: center; }
 
-        /* Navigation Buttons for PC */
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(212, 175, 55, 0.8);
-            border: none;
-            color: #121212;
-            font-size: 2rem;
-            padding: 15px 20px;
-            cursor: pointer;
-            z-index: 100;
-            border-radius: 50%;
-            transition: 0.3s;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-        }
-        .nav-btn:hover { background: #f1c40f; transform: translateY(-50%) scale(1.1); }
-        #prev-btn { left: 20px; display: none; }
-        #next-btn { right: 20px; }
+        /* Page Content */
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .page-title { color: #d66453; font-size: 2.5rem; font-weight: bold; margin-bottom: 10px; line-height: 1.2; }
+        .page-subtitle { color: #555; font-size: 1.1rem; margin-bottom: 40px; border-bottom: 1px solid #eaeaea; padding-bottom: 20px; }
 
-        .home-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #d4af37;
-            color: #121212;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            z-index: 1000;
-            transition: 0.3s;
-        }
-        .home-btn:hover { background: #f1c40f; }
-
-        /* Book Container */
-        .book-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            perspective: 2000px;
-        }
-
-        .book {
-            position: relative;
-            width: 40vw; /* PC पर एक पन्ने की चौड़ाई */
-            max-width: 450px;
-            height: 80vh;
-            max-height: 600px;
-            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-            transform-style: preserve-3d;
-        }
-
-        /* जब किताब खुलेगी, तो यह बीच में खिसक जाएगी (Centered) */
-        .book.open {
-            transform: translateX(50%);
-        }
-
-        /* 3D Paper System */
-        .paper {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            transform-style: preserve-3d;
-            transform-origin: left center;
-            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-        }
-
-        /* Front and Back of the page (No Mirror Effect) */
-        .front, .back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            backface-visibility: hidden; /* पीछे के हिस्से को छुपाता है */
-            background-color: #f4ecd8; /* पुराने पन्ने का रंग */
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.1), 2px 2px 10px rgba(0,0,0,0.3);
-        }
-
-        /* Back page needs to be rotated originally so it is readable when flipped */
-        .back {
-            transform: rotateY(180deg);
-        }
-
-        /* When Paper is Flipped */
-        .paper.flipped {
-            transform: rotateY(-180deg);
-        }
-
-        /* Cover Image Style */
-        .front.cover {
-            background-image: url('book-cover.png');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .cover-text {
-            position: absolute;
-            top: 15%;
-            width: 100%;
-            text-align: center;
-            color: #d4af37;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
-        }
-        .cover-text h1 { font-family: 'Yatra One', cursive; font-size: 3.5rem; }
-        .cover-text h2 { font-size: 1.5rem; font-style: italic; }
-
-        /* Story Text Styling */
-        .page-content {
-            padding: 25px 30px;
-            height: 100%;
-            overflow-y: auto;
-        }
-        
-        /* Custom Scrollbar inside pages */
-        .page-content::-webkit-scrollbar { width: 5px; }
-        .page-content::-webkit-scrollbar-thumb { background: #c4b59d; border-radius: 10px; }
-
-        .chapter-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #8c2a1c;
-            margin-bottom: 15px;
-        }
-
-        .chapter-title {
-            font-family: 'Yatra One', cursive;
-            color: #8c2a1c;
-            font-size: 1.6rem;
-            text-align: center;
-            margin-bottom: 15px;
-            border-bottom: 2px dashed #c4b59d;
-            padding-bottom: 10px;
-        }
-
-        .story-text p { font-size: 1rem; line-height: 1.8; text-align: justify; margin-bottom: 15px; font-weight: 500; color: #333; }
-
-        .page-number {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #888;
-        }
-
-        /* Mobile View Adjustments */
-        @media (max-width: 768px) {
-            .book { width: 50vw; height: 85vh; }
-            .nav-btn { display: none !important; } /* फोन में बटन गायब, सिर्फ स्वाइप काम करेगा */
-            .page-content { padding: 15px; }
-            .story-text p { font-size: 0.9rem; line-height: 1.6; }
-            .chapter-title { font-size: 1.3rem; }
-        }
-
+        /* Story List */
+        .story-item { display: flex; gap: 20px; padding: 25px 0; border-bottom: 1px solid #f0e9dd; text-decoration: none; color: inherit; transition: 0.3s; }
+        .story-item:hover { background-color: #faf5eb; padding-left: 10px; border-radius: 8px; }
+        .icon { color: #d66453; font-size: 1.5rem; padding-top: 5px; }
+        .story-content h2 { font-size: 1.5rem; color: #2c2c2c; margin-bottom: 8px; }
+        .story-content p { color: #666; font-size: 1.05rem; line-height: 1.6; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .author { color: #888; font-size: 0.9rem; font-style: italic; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="home-btn">← मुख्य पृष्ठ</a>
+    <header>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> होम</a>
+        <div class="site-logo">मार्ग</div>
+        <div style="width: 24px;"></div> <!-- Balancing element -->
+    </header>
 
-    <!-- PC Navigation Buttons -->
-    <button class="nav-btn" id="prev-btn" onclick="goPrevPage()">◀</button>
-    <button class="nav-btn" id="next-btn" onclick="goNextPage()">▶</button>
+    <div class="container">
+        <h1 class="page-title">पढ़िए हिंदी की श्रेष्ठ कहानियाँ</h1>
+        <p class="page-subtitle">साहित्य, रोमांच और कल्पना की दुनिया</p>
 
-    <div class="book-container">
-        <div class="book" id="book">
-            
-            <!-- PAPER 1 -->
-            <div class="paper" id="p1" style="z-index: 6;">
-                <div class="front cover">
-                    <div class="cover-text">
-                        <h1>मार्ग</h1>
-                        <h2>ज्ञान और प्रकाश</h2>
-                    </div>
-                </div>
-                <!-- पन्ने के पीछे का हिस्सा (Back) -->
-                <div class="back">
-                    <div class="page-content">
-                        <h2 style="text-align:center; margin-top:50%; color:#8c2a1c; font-family:'Yatra One', cursive;">समर्पण</h2>
-                        <p style="text-align:center; font-style:italic; color:#555;">"उन सभी गुरुओं को समर्पित, जिन्होंने अज्ञान के अंधकार में ज्ञान का दीपक जलाया।"</p>
-                    </div>
-                </div>
+        <!-- Story 1: मार्ग: ज्ञान और प्रकाश -->
+        <a href="marg-story.html" class="story-item">
+            <div class="icon"><i class="fa-regular fa-heart"></i></div>
+            <div class="story-content">
+                <h2>मार्ग: ज्ञान और प्रकाश</h2>
+                <p>शहर के जर्जर स्कूल में पढ़ने वाले 12 उपेक्षित बच्चे और उनके रहस्यमयी मास्टरजी की कहानी। एक ऐसी वैचारिक क्रांति जो उन्हें समानांतर ब्रह्मांडों, जादू और सिस्टम की दुनिया में ले जाती है। क्या वे लेवल अप करके ज्ञान के असली रूप को पा सकेंगे?</p>
+                <div class="author">लेखक: मार्ग प्रकाशन</div>
             </div>
+        </a>
 
-            <!-- PAPER 2 -->
-            <div class="paper" id="p2" style="z-index: 5;">
-                <div class="front">
-                    <div class="page-content">
-                        <img src="chapter1.png" alt="Chapter 1" class="chapter-img">
-                        <h2 class="chapter-title">अध्याय 1: जर्जर स्कूल</h2>
-                        <div class="story-text">
-                            <p>शहर के उस शोर-शराबे से दूर, एक पुरानी और जर्जर इमारत थी जिसे लोग स्कूल कहते थे। रमेश अपनी टूटी हुई चप्पलों को घसीटते हुए उस गेट के अंदर दाखिल हुआ। यह कोई आम दिन नहीं था, क्योंकि आज मास्टरजी आने वाले थे।</p>
-                            <p>मास्टरजी ने उन 12 उपेक्षित बच्चों को चुना। उन्होंने बोर्ड पर एक बिंदु बनाया और कहा, "यह बिंदु तुम हो, और यह पूरा बोर्ड तुम्हारा अज्ञान है। हम यहाँ इस बिंदु को बड़ा करने नहीं, बल्कि इस बोर्ड को मिटाने आए हैं।"</p>
-                            <p>रमेश, विक्रान्त और अन्य बच्चे, जो अब तक समाज द्वारा ठुकराए गए थे, उन्हें पहली बार लगा कि उनके अंदर भी कुछ खास है।</p>
-                        </div>
-                        <div class="page-number">1</div>
-                    </div>
-                </div>
-                <div class="back">
-                    <div class="page-content">
-                        <div class="story-text">
-                            <p>मास्टरजी का ज्ञान सिर्फ किताबों तक सीमित नहीं था। उन्होंने बच्चों को असल जिंदगी से लड़ना सिखाया। जब भ्रष्ट ट्रस्टी ने स्कूल को बेचने की कोशिश की, तो मास्टरजी ने कानून और अपनी बुद्धिमत्ता से उसे धूल चटा दी।</p>
-                            <br>
-                            <img src="chapter2.png" alt="Chapter 5" class="chapter-img">
-                            <h2 class="chapter-title">अध्याय 5: झागदार तमाशा</h2>
-                            <p>शहर की चकाचौंध और लंबी पक्की सड़कों पर जब रमेश और विक्रान्त ने कदम रखा, तो उन्हें लगा कि वे किसी दूसरी दुनिया में आ गए हैं। सामने था देश का सबसे प्रतिष्ठित 'एपेक्स मेट्रोपॉलिटन यूनिवर्सिटी'।</p>
-                        </div>
-                        <div class="page-number">2</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PAPER 3 -->
-            <div class="paper" id="p3" style="z-index: 4;">
-                <div class="front">
-                    <div class="page-content">
-                        <div class="story-text">
-                            <p>रात को रमेश ने ऑटोमैटिक वाशिंग मशीन में इतना सर्फ डाल दिया कि पूरे हॉस्टल के गलियारे में झाग ही झाग भर गया। तभी मान्या की एंट्री हुई। उसने रुमाल से रमेश का माथा पोंछते हुए कहा, "कपड़े धोने थे, बादलों की फैक्ट्री नहीं चलानी थी।"</p>
-                            <p>उसी रात, सन्नाटे में रमेश और विक्रान्त के दिमाग में एक अजीब नीली स्क्रीन चमकी: <br><strong>[ Ding! Host Connected: Earth Level 0 — Ignorant Zone Detected ]</strong><br>सिस्टम जाग उठा था। दोनों घबरा गए, लेकिन उन्हें पता था कि मास्टरजी ने उन्हें यूं ही यहाँ नहीं भेजा था।</p>
-                            <br>
-                            <h2 class="chapter-title">अध्याय 6: आधी रात का रहस्य</h2>
-                        </div>
-                        <div class="page-number">3</div>
-                    </div>
-                </div>
-                <div class="back">
-                    <div class="page-content">
-                        <img src="chapter3.png" alt="Chapter 6" class="chapter-img">
-                        <div class="story-text">
-                            <p>रात के सन्नाटे में, सिस्टम के इशारे पर दोनों पुरानी लाइब्रेरी के तहखाने में पहुंचे। वहां मान्या भी थी, जो अपने टैबलेट पर अजीब सिग्नल्स ट्रैक कर रही थी।</p>
-                            <p>तभी वहां प्रोफेसर वर्मा आ गया, जो दरअसल 'मल्टीवर्सल डार्क गिल्ड' का मोहरा था। उसने अपनी जादुई शक्तियों (Telekinesis) से उन पर हमला किया। विक्रान्त की 'अनब्रेकेबल ऑरा' और रमेश की 'स्पार्क ऑफ कंट्रोल' पहली बार जगी।</p>
-                            <p>मास्टरजी की चेतावनी की आवाज़ गूंजी। प्रोफेसर वर्मा से बचने के लिए तीनों ने तहखाने में खुले एक नीले, चमकते हुए पोर्टल में छलांग लगा दी।</p>
-                        </div>
-                        <div class="page-number">4</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PAPER 4 -->
-            <div class="paper" id="p4" style="z-index: 3;">
-                <div class="front">
-                    <div class="page-content">
-                        <img src="chapter4.png" alt="Chapter 7" class="chapter-img">
-                        <h2 class="chapter-title">अध्याय 7: दो चाँद वाला आसमान</h2>
-                        <div class="story-text">
-                            <p>पोर्टल से निकलकर वे 'ऐथेलगार्ड' (Aethelgard) नाम की जादुई दुनिया में पहुंचे, जहां आसमान में दो चाँद चमक रहे थे। वहां उन्हें मास्टरजी का होलोग्राफिक संदेश मिला, जिसमें 'स्क्रॉल ऑफ इग्निस' खोजने को कहा गया।</p>
-                            <p>तभी उन पर लेवल 2 के 'शैडो-वुल्फ' ने हमला किया। रमेश की आग, मान्या के सटीक निशाने और विक्रान्त के भारी मुक्के ने मिलकर उस दानव को हरा दिया। लेकिन दूर पहाड़ी पर तोपों का मुँह उन्हीं की तरफ घूम रहा था!</p>
-                        </div>
-                        <div class="page-number">5</div>
-                    </div>
-                </div>
-                <div class="back">
-                    <div class="page-content">
-                        <h2 class="chapter-title">अध्याय 8: परछाइयों का खिलाड़ी</h2>
-                        <div class="story-text">
-                            <p>तोपों के गोलों से बचने में उनकी मदद कबीर ने की, जो 'शैडो मर्ज' से इल्यूज़न (भ्रम) बना सकता था। चारों छिपते हुए ज्ञान मंदिर पहुँचे, जहाँ रमेश ने 'स्क्रॉल ऑफ इग्निस' हासिल किया और लेवल 3 का 'स्कॉलर' बन गया।</p>
-                            <p>लेकिन उस ऊर्जा से आसमान रोशन हो गया, और लेवल 10 का खूंखार 'ऐथेलगार्ड एक्सिक्यूशनर' दरवाज़ा तोड़कर अंदर आ घुसा। उसकी बिजली वाली तलवार मौत बनकर उनके सामने खड़ी थी।</p>
-                        </div>
-                        <div class="page-number">6</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PAPER 5 -->
-            <div class="paper" id="p5" style="z-index: 2;">
-                <div class="front">
-                    <div class="page-content">
-                        <img src="chapter5.png" alt="Chapter 9" class="chapter-img">
-                        <h2 class="chapter-title">अध्याय 9: मौत से आँख-मिचौली</h2>
-                        <div class="story-text">
-                            <p>राक्षस बहुत ताकतवर था। विक्रान्त का नीला कवच टूट गया। लेकिन मास्टरजी की सीख—"विज्ञान का इस्तेमाल करो"—रमेश को याद आई। उसने आग की शक्ति से फर्श पिघलाकर नीचे बहने वाले नाले का पानी ऊपर बुला लिया।</p>
-                            <p>पानी में भीगे राक्षस ने जैसे ही बिजली की तलवार चलाई, शॉर्ट-सर्किट से वह खुद ही भस्म हो गया। सबको भयंकर EXP मिला। बक्से में से उन्हें एक नई चाबी मिली।</p>
-                        </div>
-                        <div class="page-number">7</div>
-                    </div>
-                </div>
-                <div class="back">
-                    <div class="page-content">
-                        <h2 class="chapter-title">अध्याय 10: टिक-टॉक की दुनिया</h2>
-                        <div class="story-text">
-                            <p>सुनहरे पोर्टल से निकलकर वे मशीनों और गियर्स से बने 'द क्लॉकवर्क सिटी' में पहुंचे। यहाँ की हवा ज़हरीली थी और भावनाओं को अपराध माना जाता था।</p>
-                            <p>तीन रोबोटिक गार्ड्स ने उन पर हमला किया। रमेश ने ज़मीन तेज़ घुमाकर और मान्या ने उनकी चाबियाँ जाम करके उन्हें हरा दिया। अब उनका लक्ष्य इस मशीनी शहर के मेन 'डेटा सेंटर' को हैक करके मास्टरजी के कैद दोस्त को आज़ाद कराना था।</p>
-                            <p style="text-align:center; font-weight:bold; margin-top:20px; color:#8c2a1c;">(क्रमशः... अगले अध्याय में जारी)</p>
-                        </div>
-                        <div class="page-number">8</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- JavaScript for Book Flip & Mobile Swipe -->
-    <script>
-        const book = document.querySelector('#book');
-        const papers = document.querySelectorAll('.paper');
-        const prevBtn = document.querySelector('#prev-btn');
-        const nextBtn = document.querySelector('#next-btn');
+        <!-- यहाँ आप भविष्य में और भी कहानियाँ जोड़ सकते हैं -->
         
-        let currentLocation = 1;
-        let numOfPapers = papers.length;
-        let maxLocation = numOfPapers + 1;
-
-        function openBook() {
-            book.classList.add("open");
-            prevBtn.style.display = "block";
-        }
-
-        function closeBook(isFirstPage) {
-            if(isFirstPage) {
-                book.classList.remove("open");
-                prevBtn.style.display = "none";
-            }
-        }
-
-        function goNextPage() {
-            if (currentLocation < maxLocation) {
-                if (currentLocation === 1) openBook();
-                
-                const paper = papers[currentLocation - 1];
-                paper.classList.add("flipped");
-                
-                // Z-index fix: When flipped, page should sit properly on the left side
-                paper.style.zIndex = currentLocation; 
-                
-                currentLocation++;
-
-                if(currentLocation === maxLocation) {
-                    nextBtn.style.display = "none";
-                }
-            }
-        }
-
-        function goPrevPage() {
-            if (currentLocation > 1) {
-                if (currentLocation === 2) closeBook(true);
-                
-                const paper = papers[currentLocation - 2];
-                paper.classList.remove("flipped");
-                
-                // Restore original z-index
-                paper.style.zIndex = numOfPapers - currentLocation + 2; 
-                
-                currentLocation--;
-
-                if(currentLocation < maxLocation) {
-                    nextBtn.style.display = "block";
-                }
-            }
-        }
-
-        // TOUCH SENSOR FOR MOBILE SWIPE FEATURE (Left-Right Swipe)
-        let touchstartX = 0;
-        let touchendX = 0;
-
-        document.addEventListener('touchstart', function(event) {
-            touchstartX = event.changedTouches[0].screenX;
-        }, false);
-
-        document.addEventListener('touchend', function(event) {
-            touchendX = event.changedTouches[0].screenX;
-            handleSwipe();
-        }, false);
-
-        function handleSwipe() {
-            let swipeThreshold = 50; // 50px का स्वाइप जरुरी है
-            if (touchstartX - touchendX > swipeThreshold) {
-                // Swiped Left (Next Page)
-                goNextPage();
-            }
-            if (touchendX - touchstartX > swipeThreshold) {
-                // Swiped Right (Previous Page)
-                goPrevPage();
-            }
-        }
-    </script>
+    </div>
 
 </body>
 </html>
