@@ -5,22 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>मार्ग | ज्ञान और प्रकाश</title>
     
-    <!-- Google Fonts for Classical Devanagari Look -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Yatra+One&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background-color: #fdfbf7; /* शाही क्रीम बैकग्राउंड */
+            background-color: #fdfbf7; 
             color: #2c2c2c;
             font-family: 'Noto Serif Devanagari', serif;
             overflow-x: hidden;
         }
 
-        /* Top Header & Navigation */
         header {
             background: linear-gradient(135deg, #4a1210 0%, #2b0a09 100%);
             border-bottom: 3px solid #d4af37;
@@ -67,10 +65,9 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* Navigation Links */
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             list-style: none;
         }
 
@@ -89,7 +86,6 @@
             background: rgba(212, 175, 55, 0.1);
         }
 
-        /* Mobile Menu Toggle */
         .menu-toggle {
             display: none;
             color: #d4af37;
@@ -97,7 +93,6 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
         .hero {
             text-align: center;
             padding: 60px 20px 40px;
@@ -147,7 +142,6 @@
             transform: translateY(-2px);
         }
 
-        /* Categories / Cards Section */
         .categories-section {
             max-width: 1200px;
             margin: 50px auto;
@@ -256,7 +250,6 @@
             color: #4a1210;
         }
 
-        /* Footer Section */
         footer {
             background: #2b0a09;
             color: #f4f1ea;
@@ -334,7 +327,6 @@
             color: #aaa;
         }
 
-        /* Responsive Design for Mobile */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -372,8 +364,9 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" class="active">गृह</a></li>
                 <li><a href="kahani.html">कहानियाँ</a></li>
-                <li><a href="#nibandh">निबंध</a></li>
-                <li><a href="#kavita">कविता</a></li>
+                <li><a href="nibandh.html">निबंध</a></li>
+                <li><a href="kavita.html">कविता</a></li>
+                <li><a href="lekhak.html">लेखक</a></li>
             </ul>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
@@ -397,7 +390,7 @@
             <!-- कहानी Card (Links to kahani.html 3D Book) -->
             <a href="kahani.html" class="card">
                 <div class="card-img-container">
-                    <img src="45843.png" alt="कहानियाँ">
+                    <img src="book-cover.png" alt="कहानियाँ">
                 </div>
                 <div class="card-body">
                     <div>
@@ -409,7 +402,7 @@
             </a>
 
             <!-- निबंध Card -->
-            <div class="card" id="nibandh">
+            <a href="nibandh.html" class="card">
                 <div class="card-img-container">
                     <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=600&q=80" alt="निबंध">
                 </div>
@@ -420,14 +413,13 @@
                     </div>
                     <span class="card-btn">पढ़ें</span>
                 </div>
-            </div>
+            </a>
 
             <!-- कविता Card -->
-            <div class="card" id="kavita">
+            <a href="kavita.html" class="card">
                 <div class="card-img-container">
                     <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="कविता">
                 </div>
-                <div class="card-img-container" style="display:none;"></div>
                 <div class="card-body">
                     <div>
                         <h3 class="card-title">कविता</h3>
@@ -435,7 +427,7 @@
                     </div>
                     <span class="card-btn">पढ़ें</span>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -447,11 +439,12 @@
                 <p>हमारी इस यात्रा में 'मार्ग' हिंदी साहित्य का एक नया सुंदर सूर्य है, जहाँ कहानियाँ, कविताएँ और निबंध मिलते हैं।</p>
             </div>
             <div class="footer-col">
-                <h3>Quick Links</h3>
+                <h3>लिंक्स (Links)</h3>
                 <a href="index.html">गृह</a>
                 <a href="kahani.html">कहानियाँ</a>
-                <a href="#nibandh">निबंध</a>
-                <a href="#kavita">कविता</a>
+                <a href="nibandh.html">निबंध</a>
+                <a href="kavita.html">कविता</a>
+                <a href="lekhak.html">लेखक के बारे में</a>
             </div>
             <div class="footer-col">
                 <h3>Newsletter</h3>
